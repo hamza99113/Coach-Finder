@@ -6,24 +6,24 @@ export default {
 
       // userIsCoach: false, //Alternative Approach
       coaches: [
-        {
-          id: 'c1',
-          firstName: 'Maximilian',
-          lastName: 'Schwarzmüller',
-          areas: ['frontend', 'backend', 'career'],
-          description:
-            "I'm Maximilian and I've worked as a freelance web developer for years. Let me help you become a developer as well!",
-          hourlyRate: 30,
-        },
-        {
-          id: 'c2',
-          firstName: 'Julie',
-          lastName: 'Jones',
-          areas: ['frontend', 'career'],
-          description:
-            'I am Julie and as a senior developer in a big tech company, I can help you get your first job or progress in your current role.',
-          hourlyRate: 45,
-        },
+        // {
+        //   id: 'c1',
+        //   firstName: 'Maximilian',
+        //   lastName: 'Schwarzmüller',
+        //   areas: ['frontend', 'backend', 'career'],
+        //   description:
+        //     "I'm Maximilian and I've worked as a freelance web developer for years. Let me help you become a developer as well!",
+        //   hourlyRate: 30,
+        // },
+        // {
+        //   id: 'c2',
+        //   firstName: 'Julie',
+        //   lastName: 'Jones',
+        //   areas: ['frontend', 'career'],
+        //   description:
+        //     'I am Julie and as a senior developer in a big tech company, I can help you get your first job or progress in your current role.',
+        //   hourlyRate: 45,
+        // },
       ],
     };
   },
@@ -79,20 +79,27 @@ export default {
       }
 
 
+      //Getting Coaches Data From Firebase; 'GET' Http request
       const response = await fetch(
         `https://coach-finder-b287d-default-rtdb.firebaseio.com/coaches.json`
       );
-      const responseData = await response.json();
+
+      //Storing Fetched Data into responseData; fetched form is an 'Object'
+      const responseData = await response.json(); // fetch data in json format and automatically convert it into javascript object for user usage.
+      
+      //Error Handling
       if (!response.ok) {
         const error = new Error(
           responseData.message || 'Faild to Fetch Coach Data!'
         );
         throw error;
       }
+
+      //To transform to needed format
       const coaches = [];
       for (const key in responseData) {
         const coach = {
-          id: key, //c3
+          id: key, //c3: the id in firebase
           //Named accordingly stored in Firebase
           firstName: responseData[key].firstName,
           lastName: responseData[key].lastName,

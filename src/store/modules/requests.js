@@ -26,7 +26,7 @@ export default {
       });
       const responseData = await response.json();
       if(!response.ok){
-        const error = new Error(responseData.message || 'Failed to Send Request!');
+        const error = new Error(responseData.message || 'Failed to Send Request!'); //  If the responseData object has a message property, that message is used as the error message. If there is no message property in responseData, a default error message, "Failed to Send Request!", is used.
         throw error;
       }
       console.log(responseData);
