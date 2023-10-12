@@ -52,7 +52,7 @@ export default {
 
       //.Then() will execute fetch() only once; when the code in .Then() is executed.
       const response = await fetch(
-        `https://coach-finder-b287d-default-rtdb.firebaseio.com/coches/${userId}.json`,
+        `https://coach-finder-b287d-default-rtdb.firebaseio.com/coaches/${userId}.json`,
         {
           method: 'PUT',
           body: JSON.stringify(coachData),
@@ -80,7 +80,7 @@ export default {
 
 
       const response = await fetch(
-        'https://coach-finder-b287d-default-rtdb.firebaseio.com/coches.json'
+        `https://coach-finder-b287d-default-rtdb.firebaseio.com/coaches.json`
       );
       const responseData = await response.json();
       if (!response.ok) {
